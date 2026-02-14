@@ -1,0 +1,12 @@
+# Development profile: local Postgres, dev-friendly settings
+# Activate with: spring.profiles.active=dev
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/fitnesstracker
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
