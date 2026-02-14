@@ -1,0 +1,36 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: fitness-tracker-be
+  datasource:
+    url: jdbc:postgresql://localhost:5432/fitnesstracker
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        default_schema: public
+    open-in-view: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+# JWT (use env vars in production)
+app:
+  jwt:
+    secret: ${JWT_SECRET:your-256-bit-secret-change-in-production-must-be-at-least-256-bits}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+  exercisedb:
+    base-url: ${EXERCISEDB_BASE_URL:https://exercisedb.p.rapidapi.com}
+    api-key: ${EXERCISEDB_API_KEY:your-rapidapi-key}
+    api-host: ${EXERCISEDB_API_HOST:exercisedb.p.rapidapi.com}
+  calorieninjas:
+    base-url: ${CALORIENINJAS_BASE_URL:https://api.calorieninjas.com/v1}
+    api-key: ${CALORIENINJAS_API_KEY:your-calorieninjas-api-key}
